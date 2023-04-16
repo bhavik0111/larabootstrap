@@ -54,3 +54,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin',[AdminController::class,'dashboard'])->name('admin.dashboard');
 Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
+Route::get('/users',[UserController::class,'index'])->name('user.index'); //<--(listing)-->
+Route::get('user/{id}/edit',[UserController::class,'edit'])->name('user.edit');  //<--(edit)-->
+Route::post('user/update',[UserController::class,'update'])->name('user.update');
+Route::delete('user/delete/{id}',[UserController::class,'destroy'])->name('user.destroy');//
+Route::get('/register/verify/{id}', [UserController::class, 'verify'])->name('verify');

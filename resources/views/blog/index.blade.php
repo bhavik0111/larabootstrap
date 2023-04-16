@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layout.master')
 @section('content')
 	<h1>Blog Posts</h1>
-	
+
 	@foreach ($blogs as $blog)
 		<div>
 			<h2>{{ $blog->title }}</h2>
