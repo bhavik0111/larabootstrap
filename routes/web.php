@@ -36,6 +36,14 @@ Route::middleware('auth')->group(function () {
 
 // Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
 
+
+
+
+// Route::get('user', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
+
+
 Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
 });

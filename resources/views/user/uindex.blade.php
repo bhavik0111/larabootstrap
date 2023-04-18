@@ -45,6 +45,7 @@
                                 @endif
                             </span>
                         </td>
+                            </span></td>
                         <td>
                         <div class="row">
                             <div class="col-md-2">
