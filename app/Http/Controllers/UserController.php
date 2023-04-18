@@ -52,6 +52,7 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('msg', 'Record Deleted');
     }
+    
     function verify($id)
     {
         //FOR user verify...
@@ -63,6 +64,20 @@ class UserController extends Controller
         return redirect()->route('user.index')->with(
             'msg',
             'user account is verifyed'
+        );
+    }
+
+    function unverify($id)
+    {
+        //FOR user unverify...
+        $user = user::where('id', $id)
+            ->get()
+            ->first();
+        $user->verify_acc = 0;
+        $user->save();
+        return redirect()->route('user.index')->with(
+            'msg',
+            'user account is unverifyed'
         );
     }
 }

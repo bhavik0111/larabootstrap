@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
@@ -19,6 +18,8 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
+    // return view('dashboard');
+
 });
 
 Route::get('/dashboard', function () {
@@ -31,31 +32,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Route::get('user', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['prefix' => 'blogs'], function () {
-    Route::get('/', [BlogController::class,'index'])->name('blog.index');
-    Route::get('/create', [BlogController::class,'create'])->name('blog.create');
-    Route::post('/store', [BlogController::class,'store'])->name('blog.store');
-    Route::get('/{id}/show', [BlogController::class,'show'])->name('blog.show');
-    Route::put('/{id}/update', [BlogController::class,'update'])->name('blog.updat
-    e');
-    Route::delete('/{id}/destroy', [BlogController::class,'destroy'])->name('blog.
-    destroy');
-    Route::get('/{id}/edit', [BlogController::class,'edit'])->name('blog.edit');
+Route::group(['prefix' => 'admin'], function () {
+    Auth::routes();
 });
 
-Auth::routes();
+ Route::middleware(['auth','isAdmin'])->group(function(){
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('admin',[AdminController::class,'dashboard'])->name('admin.dashboard');
-Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
-Route::get('/users',[UserController::class,'index'])->name('user.index'); //<--(listing)-->
-Route::get('user/{id}/edit',[UserController::class,'edit'])->name('user.edit');  //<--(edit)-->
-Route::post('user/update',[UserController::class,'update'])->name('user.update');
-Route::delete('user/delete/{id}',[UserController::class,'destroy'])->name('user.destroy');//
-Route::get('/register/verify/{id}', [UserController::class, 'verify'])->name('verify');
+    Route::get('/admin',[AdminController::class,'dashboard'])->name('admin.dashboard');
+    Route::get('admin/users',[UserController::class,'index'])->name('user.index'); //<--(listing)-->
+    Route::get('admin/user/{id}/edit',[UserController::class,'edit'])->name('user.edit');  //<--(edit)-->
+    Route::post('admin/user/update',[UserController::class,'update'])->name('user.update');
+    Route::delete('admin/user/delete/{id}',[UserController::class,'destroy'])->name('user.destroy');//
+    Route::get('/register/verify/{id}', [UserController::class, 'verify'])->name('verify');
+    Route::get('/register/unverify/{id}', [UserController::class, 'unverify'])->name('unverify');
+ });

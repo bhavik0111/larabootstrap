@@ -57,6 +57,28 @@
                         </div>
                     @enderror
                 </div>
+                <div class="row">
+                    <span class="badge bg-label-success me-1">
+                    @if ($user->verify_acc != 1)
+                        <div class="col-md-2">
+                            <a href="{{ route('verify', $user->id) }}"
+                                class="btn btn-warning"><b>verify</b></a>
+                        </div>
+                    @else
+                        <h5>{{ 'verified' }}</h5>
+                    @endif
+                    </span>
+                <!-- </div> -->
+
+                    <span class="badge bg-label-success me-1">
+                    @if ($user->verify_acc != 0)
+                        <div class="col-md-2">
+                            <a href="{{ route('unverify', $user->id) }}"
+                                class="btn btn-warning"><b>unverify</b></a>
+                        </div>
+                    @endif
+                    </span>
+                </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name="uedit">Edit</button>
 
