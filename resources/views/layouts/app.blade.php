@@ -23,7 +23,7 @@
 
    <link rel="stylesheet" href="{{ asset('public/admin/build/assets/app-9d9fc075.css') }}" />
 
-   <script src="{{ asset('public/admin/assets/build/assets/app-8216e5b2.js')}}">
+   <script src="{{ asset('public/admin/build/assets/app-8216e5b2.js')}}">
        
        
    </script>
