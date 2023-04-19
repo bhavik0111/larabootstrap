@@ -19,7 +19,6 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
     // return view('dashboard');
-
 });
 
 Route::get('/dashboard', function () {
@@ -37,8 +36,6 @@ Route::middleware('auth')->group(function () {
 // Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
 
 
-
-
 // Route::get('user', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('user',[UserController::class,'dashboard'])->name('user.dashboard');
@@ -48,8 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
 });
 
- Route::middleware(['auth','isAdmin'])->group(function(){
 
+ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/admin',[AdminController::class,'dashboard'])->name('admin.dashboard');
     Route::get('admin/users',[UserController::class,'index'])->name('user.index'); //<--(listing)-->
     Route::get('admin/user/{id}/edit',[UserController::class,'edit'])->name('user.edit');  //<--(edit)-->

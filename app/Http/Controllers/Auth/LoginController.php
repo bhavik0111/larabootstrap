@@ -35,7 +35,7 @@ class LoginController extends Controller
         if($user->is_admin){
             return '/admin';
         }
-        return '/user';
+        return '/';
     }
 
     /**
