@@ -48,10 +48,18 @@ Route::group(['prefix' => 'admin'], function () {
 
  Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/admin',[AdminController::class,'dashboard'])->name('admin.dashboard');
+
     Route::get('admin/users',[UserController::class,'index'])->name('user.index'); //<--(listing)-->
+
+    Route::get('admin/addusers',[UserController::class,'adduser'])->name('user.adduser'); //view user form
+
+    Route::post('admin/store',[UserController::class,'store'])->name('store'); //Insert in db
+
     Route::get('admin/user/{id}/edit',[UserController::class,'edit'])->name('user.edit');  //<--(edit)-->
+
     Route::post('admin/user/update',[UserController::class,'update'])->name('user.update');
     Route::delete('admin/user/delete/{id}',[UserController::class,'destroy'])->name('user.destroy');//
+
     Route::get('/register/verify/{id}', [UserController::class, 'verify'])->name('verify');
     Route::get('/register/unverify/{id}', [UserController::class, 'unverify'])->name('unverify');
  });

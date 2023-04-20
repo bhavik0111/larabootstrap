@@ -27,12 +27,19 @@ rel="stylesheet"
     <div class="card">
         <div class="card-body">
         <h5 class="card-title">Users</h5>
+
+            <div class="card-body">
+                <div class="form-group column" style="float:right">
+                  <a href="{{ route('user.adduser') }}" class="col-sm-3 text-end control-label col-form-label"><b>Add+</b></a>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table id="zero_config" class="table table-striped table-bordered">
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>User Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>User Email</th>
                         <th>Account</th>
                         <th>Action</th>
@@ -44,6 +51,7 @@ rel="stylesheet"
                         <td><strong>{{ $user->id }}</strong></td>
                         
                         <td>{{ $user->name }}</td>
+                        <td>{{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
                             @if ($user->verify_acc != 1)

@@ -13,12 +13,32 @@ class UserController extends Controller
         return view('user.dashbord');
     }
 
+    public function adduser(Request $request)
+    {
+        // user form
+        return view('user.adduser');
+    }
+
+    public function store(Request $req)    //INSERT IN DB...
+    {
+       $user= new user;
+       $user->name=$req->name;
+       $user->last_name=$req->last_name;
+       $user->email=$req->email;
+       $user->password=$req->password;
+       $user->save();
+       // $student::create($req->all());
+       return redirect()->route('user.index')->with('msg','Record Successfully Inserted');
+    }
+
+
     public function index(Request $request)
     {
         // FOR user LISTING...
         $users = User::get()->all();
         return view('user.uindex', compact('users'));
     }
+
     public function edit($id)
     {
         //FOR user EDIT...
@@ -34,8 +54,11 @@ class UserController extends Controller
         $user = User::where('id', $req->id)
             ->get()
             ->first();
+        dd($req);
         $user->name = $req->name;
+        $user->last_name = $req->last_name;
         $user->email = $req->email;
+        $user->verify_acc = $req->verify_acc;
 
         $user->save();
 
