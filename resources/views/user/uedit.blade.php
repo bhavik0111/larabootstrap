@@ -8,7 +8,7 @@
                  <!-- <img class="mb-4" src="https://laravel.com/img/logomark.min.svg" alt="" width="72" height="57"> -->
                  <div class="mb-2 d-flex justify-content-between align-items-left">
                     <div class="px-2">
-                        <a href="{{ route('user.index') }}" class="btn btn-primary">Back</a>
+                        <a href="{{ route('user.index') }}" class="btn btn-outline-info">Back</a>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                     @if ($user->verify_acc != 1)
                         <div class="col-md-2">
                             <a href="{{ route('verify', $user->id) }}"
-                                class="btn btn-warning"><b>verify</b></a>
+                                class="btn btn-success text-white"><b>verify</b></a>
                         </div>
                     @else
                         <h5>{{ 'verified' }}</h5>
@@ -80,7 +80,7 @@
                     </span>
                 </div>
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit" name="uedit">Edit</button>
+                <button class="btn btn-primary btn-lg" type="submit" name="uedit">Edit</button>
 
             </form>
         </div>

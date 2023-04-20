@@ -1,4 +1,14 @@
 @extends('admin.layout.master')
+<link
+rel="stylesheet"
+type="text/css"
+href="{{ asset('public/admin/assets/extra-libs/multicheck/multicheck.css')}}"
+/>
+
+<link
+href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}"
+rel="stylesheet"
+/>
 @section('content')
     <!-- <body>
         -->
@@ -32,6 +42,7 @@
                     @foreach ($users as $user)
                       <tr>
                         <td><strong>{{ $user->id }}</strong></td>
+                        
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
@@ -39,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <a href="{{ route('verify', $user->id) }}"
-                                            class="btn btn-warning"><b>verify</b></a>
+                                            class="btn btn-success text-white"><b>verify</b></a>
                                     </div>
                                 </div>
                             @else
@@ -47,12 +58,12 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning"><b>Edit</b></a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><b>Edit</b></a>
                            
                             <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure Delete User?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><b>Delete</b></button>
+                                <button type="submit" class="btn btn-danger text-white"><b>Delete</b></button>
                             </form>
                         </td>
                       </tr>
@@ -64,12 +75,14 @@
     </div>
 <!-- </div> -->
 @endsection
-
-
-
-
-    <!--<div class="mb-2 d-flex justify-content-between align-items-center">
-         <div class="px-2">
-         <a href="{{ url('user') }}" class="btn btn-primary">Add+</a>
-         </div>
-            </div> -->
+@push('scripts')
+<script src="{{ asset('public/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
+<script src="{{ asset('public/admin/assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
+<script src="{{ asset('public/admin/assets/extra-libs/DataTables/datatables.min.js') }}"></script>
+<script>
+  /****************************************
+   *       Basic Table                   *
+   ****************************************/
+  $("#zero_config").DataTable();
+</script>
+@endpush
