@@ -66,7 +66,17 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 // <--CATEGORY-->
-    Route::get('admin/category',[CategoryController::class,'category'])->name('admin.ctgry.category'); //view category form...
+    Route::get('admin/addcategory',[CategoryController::class,'Category'])->name('admin.ctgry.category'); //view Category form...
+
+    Route::post('admin/storecategory',[CategoryController::class,'store'])->name('Category.store'); //Insert in db
+
+    Route::get('admin/allcategory',[CategoryController::class,'index'])->name('admin.ctgry.index'); //<--(listing)-->
+
+     Route::get('admin/category/{id}/edit',[CategoryController::class,'edit'])->name('admin.ctgry.editctgry');  //<--(edit)-->
+
+     Route::post('admin/category/update',[CategoryController::class,'update'])->name('Category.update');
+
+     Route::delete('admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('Category.destroy');//
 
 
 

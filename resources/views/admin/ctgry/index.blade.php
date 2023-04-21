@@ -10,9 +10,8 @@ href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.boots
 rel="stylesheet"
 />
 @section('content')
-    <!-- <body>
-        -->
-<!-- <div class="container mt-5 px-2"> -->
+
+<!-- (FOR MSG) -->
     @if (session()->has('msg'))
         <div class="alert alert-success">
             {{ session()->get('msg') }}
@@ -23,14 +22,14 @@ rel="stylesheet"
             {{ session()->get('error_msg') }}
         </div>
     @endif
-
+<!-- (END MSG) -->
     <div class="card">
         <div class="card-body">
-        <h5 class="card-title">Users</h5>
+        <h4 class="card-title"><b>All Category</b></h4>
 
             <div class="card-body">
                 <div class="form-group column" style="float:right">
-                  <a href="{{ route('user.adduser') }}" class="btn btn-dark"><b>Add+</b></a>
+                  <a href="{{ route('admin.ctgry.category') }}" class="btn btn-dark"><b>Add+</b></a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -38,42 +37,34 @@ rel="stylesheet"
                     <thead>
                       <tr>
                         <th><b>ID</b></th>
-                        <th><b>First Name</b></th>
-                        <th><b>Last Name</b></th>
-                        <th><b>User Email</b></th>
-                        <th><b>Account</b></th>
+                        <th><b>Name</b></th>
+                        <th><b>Image</b></th>
+                        <th><b>Price</b></th>
+                        <th><b>Description</b></th>
+                        <th><b>Status</b></th>
                         <!-- <th>Is Admin</th> -->
                         <th><b>Action</b></th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($category as $category)
                       <tr>
-                        <td><strong>{{ $user->id }}</strong></td>
+                        <td><strong>{{ $category->id }}</strong></td>
                         
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->last_name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $category->name }}</td>
                         <td>
-                            @if ($user->verify_acc != 1)
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <a href="{{ route('verify', $user->id) }}"
-                                            class="btn btn-success text-white"><b>verify</b></a>
-                                    </div>
-                                </div>
-                            @else
-                                {{ 'verified' }}
-                            @endif
+                            <img src="#" height="70 " width="70">
                         </td>
-                        <!-- <td>
-                            @if($user->verify_acc == 1) {{ 'Yes' }} @endif
-                            @if($user->verify_acc == 2) {{ 'No' }} @endif
-                        </td> -->
+                        <td>{{ $category->price }}</td>
+                        <td>{{ $category->description }}</td>
                         <td>
-                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><b>Edit</b></a>
+                            @if ($category->status==1){{ 'Active' }} @endif
+                            @if ($category->status==0){{ 'Deactive' }} @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.ctgry.editctgry', $category->id) }}" class="btn btn-info"><b>Edit</b></a>
                            
-                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure Delete User?');">
+                            <form action="{{ route('Category.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure Delete User?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger text-white"><b>Delete</b></button>

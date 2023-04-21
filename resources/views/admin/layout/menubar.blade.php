@@ -27,7 +27,7 @@
 
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{ route('admin.ctgry.category') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i
+                            <a href="{{ route('admin.ctgry.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i
                               ><span class="hide-menu"> Category </span></a
                             >
                         </li>
