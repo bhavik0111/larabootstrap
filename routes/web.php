@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -60,6 +61,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('admin/user/update',[UserController::class,'update'])->name('user.update');
     Route::delete('admin/user/delete/{id}',[UserController::class,'destroy'])->name('user.destroy');//
 
-    Route::get('/register/verify/{id}', [UserController::class, 'verify'])->name('verify');
-    Route::get('/register/unverify/{id}', [UserController::class, 'unverify'])->name('unverify');
+    Route::get('/admin/verify/{id}', [UserController::class, 'verify'])->name('verify');
+    Route::get('/admin/unverify/{id}', [UserController::class, 'unverify'])->name('unverify');
+
+
+// <--CATEGORY-->
+    Route::get('admin/category',[CategoryController::class,'category'])->name('admin.ctgry.category'); //view category form...
+
+
+
+
+
  });

@@ -10,7 +10,7 @@
 
         <div class="card-body">
             <div class="form-group column" style="float:right">
-              <a href="{{ route('user.index') }}" class="col-sm-3 text-end control-label col-form-label"><b>Back</b></a>
+              <a href="{{ route('user.index') }}" class="btn btn-dark"><b>Back</b></a>
             </div>
         </div>
 
@@ -105,7 +105,7 @@
 
                   <input type="radio" class="form-check-input"
                     id="customControlValidation1"
-                    name="verify_acc" value="1" @if ($user->verify_acc == 1){{ 'checked=checked' }}@endif
+                    name="verify_acc" value="1" @if ($user->verify_acc == 1){{ 'checked=checked' }} @endif
                     required/>
                   <label
                     class="form-check-label mb-0"
@@ -118,12 +118,41 @@
                   <input type="radio" class="form-check-input"
                     id="customControlValidation2"
                     name="verify_acc" value="0"
-                    @if ($user->verify_acc == 0){{ 'checked=checked'}}@endif
+                    @if ($user->verify_acc == 0){{ 'checked=checked'}} @endif
                     required/>
                   <label
                     class="form-check-label mb-0"
                     for="customControlValidation2"
                     >Unverify</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 text-end control-label col-form-label"><b>Is Admin</b></label>
+            <div class="col-md-9">
+                <div class="form-check">
+
+                  <input type="radio" class="form-check-input"
+                    id="customControlValidation1"
+                    name="is_admin" value="1" @if ($user->is_admin == 1){{ 'checked=checked' }} @endif
+                    required/>
+                  <label
+                    class="form-check-label mb-0"
+                    for="customControlValidation1"
+                    >Yes</label>
+
+                </div>
+                <div class="form-check">
+
+                  <input type="radio" class="form-check-input"
+                    id="customControlValidation2"
+                    name="is_admin" value="2" @if ($user->is_admin == 2){{ 'checked=checked' }} @endif
+                    required/>
+                  <label
+                    class="form-check-label mb-0"
+                    for="customControlValidation2"
+                    >No</label>
                 </div>
             </div>
         </div>

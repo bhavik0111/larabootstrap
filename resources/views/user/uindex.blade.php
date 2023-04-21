@@ -30,7 +30,7 @@ rel="stylesheet"
 
             <div class="card-body">
                 <div class="form-group column" style="float:right">
-                  <a href="{{ route('user.adduser') }}" class="col-sm-3 text-end control-label col-form-label"><b>Add+</b></a>
+                  <a href="{{ route('user.adduser') }}" class="btn btn-dark"><b>Add+</b></a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -42,6 +42,7 @@ rel="stylesheet"
                         <th>Last Name</th>
                         <th>User Email</th>
                         <th>Account</th>
+                        <!-- <th>Is Admin</th> -->
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -65,6 +66,10 @@ rel="stylesheet"
                                 {{ 'verified' }}
                             @endif
                         </td>
+                        <!-- <td>
+                            @if($user->verify_acc == 1) {{ 'Yes' }} @endif
+                            @if($user->verify_acc == 2) {{ 'No' }} @endif
+                        </td> -->
                         <td>
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><b>Edit</b></a>
                            
@@ -83,7 +88,7 @@ rel="stylesheet"
     </div>
 <!-- </div> -->
 @endsection
-@push('scripts')
+@push('scripts')  <!-- for all pagination,asc-desc,search,shorting  -->
 <script src="{{ asset('public/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
 <script src="{{ asset('public/admin/assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
 <script src="{{ asset('public/admin/assets/extra-libs/DataTables/datatables.min.js') }}"></script>

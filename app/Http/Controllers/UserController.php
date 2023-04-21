@@ -26,6 +26,7 @@ class UserController extends Controller
        $user->last_name=$req->last_name;
        $user->email=$req->email;
        $user->password=$req->password;
+       $user->is_admin = $req->is_admin;
        $user->save();
        // $student::create($req->all());
        return redirect()->route('user.index')->with('msg','Record Successfully Inserted');
@@ -41,7 +42,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        //FOR user EDIT...
+        // user EDIT form...
         $user = User::where('id', $id)
             ->get()
             ->first();
@@ -54,11 +55,12 @@ class UserController extends Controller
         $user = User::where('id', $req->id)
             ->get()
             ->first();
-        dd($req);
+        // dd($req);
         $user->name = $req->name;
         $user->last_name = $req->last_name;
         $user->email = $req->email;
         $user->verify_acc = $req->verify_acc;
+        $user->is_admin = $req->is_admin;
 
         $user->save();
 
@@ -76,7 +78,7 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('msg', 'Record Deleted');
     }
     
-    function verify($id)
+    function verify($id)   //listing file butoons verify and unverify
     {
         //FOR user verify...
         $user = user::where('id', $id)
@@ -90,7 +92,7 @@ class UserController extends Controller
         );
     }
 
-    function unverify($id)
+    function unverify($id)   
     {
         //FOR user unverify...
         $user = user::where('id', $id)
