@@ -1,13 +1,9 @@
 @extends('admin.layout.master')
-<link
-rel="stylesheet"
-type="text/css"
-href="{{ asset('public/admin/assets/extra-libs/multicheck/multicheck.css')}}"
-/>
+<link rel="stylesheet" type="text/css"
+href="{{ asset('public/admin/assets/extra-libs/multicheck/multicheck.css')}}"/>
 
-<link
+<link rel="stylesheet"
 href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}"
-rel="stylesheet"
 />
 @section('content')
 

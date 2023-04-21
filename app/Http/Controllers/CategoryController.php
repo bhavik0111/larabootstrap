@@ -13,12 +13,29 @@ class CategoryController extends Controller
 
     public function store(Request $req)    //INSERT IN DB...
     {
-       $category= new Category();
-       $category->name=$req->name;
-       // $category->image=$req->image;
-       $category->price=$req->price;
-       $category->description=$req->description;
-       $category->status = $req->status;
+        $category= new Category();
+        $category->name=$req->name;
+        // $category->image = $req->file('image');
+        $category->price=$req->price;
+        $category->description=$req->description;
+        $category->status = $req->status;
+       
+            $dirPath = 'images/category_images/'; // folder name where you wan to upload
+            $image = $req->file('cat_image');  // name of your input field
+            /*for making directory 
+            File::isDirectory($dirPath) or File::makeDirectory($dirPath, 0777, true, true);
+            $offerLatterDirPath = public_path($dirPath);
+            if (!File::isDirectory($offerLatterDirPath)) {
+                File::makeDirectory($offerLatterDirPath, 0777, true, true);
+            }
+            */
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($dirPath), $image_name); // for store in folder
+            
+            $category->image = $dirPath . $image_name; // for store in database
+
+
+
        $category->save();
        // $student::create($req->all());
        return redirect()->route('admin.ctgry.index')->with('msg','Record Successfully Inserted');
@@ -54,9 +71,8 @@ class CategoryController extends Controller
         return redirect()->route('admin.ctgry.index')->with('msg', 'Record Updated');
     }
 
-    function destroy($id)
+    function destroy($id)   //FOR user DELETE...
     {
-        //FOR user DELETE...
         $user = Category::where('id', $id)
             ->get()
             ->first();

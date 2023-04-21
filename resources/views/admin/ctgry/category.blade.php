@@ -4,7 +4,7 @@
 <main class="form-signin">
 
 <div class="card">
-    <form method="POST" action="{{ route('Category.store') }}">
+    <form method="POST" action="{{ route('Category.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="card-body">
        <h4 class="card-title">{{ __('Add Category') }}</h4>
@@ -107,7 +107,7 @@
         </div>
 
         <div class="border-top">
-            <div class="card-body">
+            <div class="card-body" style="float:center">
                 <button type="submit" class="btn btn-primary">
                     {{ __('submit') }}
                 </button>

@@ -35,6 +35,18 @@
 
         <div class="form-group row">
             <label
+              for="cat_image"
+              class="col-sm-3 text-end control-label col-form-label"
+              ><b>{{ __('Image') }}</b></label>
+
+            <div class="col-sm-9">
+              <input id="cat_image" type="file" class="form-control" name="cat_image"  autocomplete="cat_image" autofocus>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label
               for="price"
               class="col-sm-3 text-end control-label col-form-label"
               ><b>price</b></label>
