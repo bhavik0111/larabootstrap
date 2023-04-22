@@ -77,9 +77,11 @@ Route::group(['prefix' => 'admin'], function () {
      Route::post('admin/category/update',[CategoryController::class,'update'])->name('Category.update');
 
      Route::delete('admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('Category.destroy');//
+// <--END CATEGORY-->
 
+// <--PRODUCT-->
 
-
+// <--END PRODUCT-->
 
 
  });

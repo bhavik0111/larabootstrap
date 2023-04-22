@@ -38,7 +38,6 @@ href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.boots
                         <th><b>Price</b></th>
                         <th><b>Description</b></th>
                         <th><b>Status</b></th>
-                        <!-- <th>Is Admin</th> -->
                         <th><b>Action</b></th>
                       </tr>
                     </thead>
@@ -49,7 +48,7 @@ href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.boots
                         
                         <td>{{ $category->name }}</td>
                         <td>
-                            <img src="#" height="70 " width="70">
+                            <img src="{{ asset('public/'.$category->image) }}" height="100" width="100">
                         </td>
                         <td>{{ $category->price }}</td>
                         <td>{{ $category->description }}</td>

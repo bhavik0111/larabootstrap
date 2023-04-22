@@ -89,7 +89,7 @@
                   <label
                     class="form-check-label mb-0"
                     for="customControlValidation1"
-                    >Active</label>
+                    >{{ __('Active') }}</label>
 
                 </div>
                 <div class="form-check">
@@ -101,7 +101,7 @@
                   <label
                     class="form-check-label mb-0"
                     for="customControlValidation2"
-                    >Deactive</label>
+                    >{{ __('Deactive') }}</label>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
 <main class="form-signin">
 
 <div class="card">
-  <form action="{{ route('Category.update') }}" method="POST">
+  <form action="{{ route('Category.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card-body">
       <h4 class="card-title">Update Category</h4>
@@ -18,7 +18,7 @@
             <label
               for="name"
               class="col-sm-3 text-end control-label col-form-label"
-              ><b>Name</b></label>
+              ><b>{{ __('Name') }}</b></label>
             <div class="col-sm-9">
               <input type="text" class="form-control @error('name') is-invalid @enderror"
                      value="{{ old('name',$category->name) }}" id="name" name="name" placeholder=" name">
@@ -49,7 +49,7 @@
             <label
               for="price"
               class="col-sm-3 text-end control-label col-form-label"
-              ><b>price</b></label>
+              ><b>{{ __('price') }}</b></label>
             <div class="col-sm-9">
               <input type="number" class="form-control @error('price') is-invalid @enderror"
                      value="{{ old('price',$category->price) }}" id="price" name="price" placeholder="your price">
@@ -64,7 +64,7 @@
 
         <div class="form-group row">
             <label for="description" class="col-sm-3 text-end control-label col-form-label"
-              ><b>Description</b></label>
+              ><b>{{ __('Description') }}</b></label>
             <div class="col-sm-9">
               <input type="text" class="form-control @error('description')is-invalid @enderror"
                       value="{{ old('description',$category->description) }}" id="description" name="description" placeholder="name@example.com">
@@ -90,7 +90,7 @@
                   <label
                     class="form-check-label mb-0"
                     for="customControlValidation1"
-                    >Active</label>
+                    >{{ __('Active') }}</label>
 
                 </div>
                 <div class="form-check">
@@ -102,7 +102,7 @@
                   <label
                     class="form-check-label mb-0"
                     for="customControlValidation2"
-                    >Deactive</label>
+                    >{{ __('Deactive') }}</label>
                 </div>
             </div>
         </div>

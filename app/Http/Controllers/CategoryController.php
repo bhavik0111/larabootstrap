@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function Category(Request $req) // Category form open
+    public function Category(Request $req)     // Category form open
     {
         return view('admin.ctgry.category');
     }
 
-    public function store(Request $req)    //INSERT IN DB...
+    public function store(Request $req)        //INSERT IN DB...
     {
         $category= new Category();
         $category->name=$req->name;
@@ -19,21 +19,22 @@ class CategoryController extends Controller
         $category->price=$req->price;
         $category->description=$req->description;
         $category->status = $req->status;
-       
-            $dirPath = 'images/category_images/'; // folder name where you wan to upload
-            $image = $req->file('cat_image');  // name of your input field
-            /*for making directory 
-            File::isDirectory($dirPath) or File::makeDirectory($dirPath, 0777, true, true);
-            $offerLatterDirPath = public_path($dirPath);
-            if (!File::isDirectory($offerLatterDirPath)) {
-                File::makeDirectory($offerLatterDirPath, 0777, true, true);
-            }
-            */
-            $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path($dirPath), $image_name); // for store in folder
-            
-            $category->image = $dirPath . $image_name; // for store in database
 
+
+            if($req->has('cat_image')){
+                $dirPath = 'images/category_images/'; // folder name where you wan to upload
+                $image = $req->file('cat_image');     // name of your input field
+                    /*for making directory 
+                    File::isDirectory($dirPath) or File::makeDirectory($dirPath, 0777, true, true);
+                    $offerLatterDirPath = public_path($dirPath);
+                    if (!File::isDirectory($offerLatterDirPath)) {
+                        File::makeDirectory($offerLatterDirPath, 0777, true, true);
+                    }*/
+                $image_name = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($dirPath), $image_name); // for store in folder
+                
+                $category->image = $dirPath . $image_name; // for store in database
+            }
 
 
        $category->save();
@@ -47,7 +48,7 @@ class CategoryController extends Controller
         return view('admin.ctgry.index', compact('category'));
     }
 
-    public function edit($id)  // user EDIT form display...
+    public function edit($id)            // user EDIT form display...
     {
         $category = Category::where('id', $id)
             ->get()
@@ -55,7 +56,7 @@ class CategoryController extends Controller
         return view('admin.ctgry.editctgry', compact('category'));
     }
 
-    function update(Request $req)  //user UPDATE IN DB...
+    function update(Request $req)         //user UPDATE IN DB...
     {
         $category = Category::where('id', $req->id)
             ->get()
@@ -65,6 +66,17 @@ class CategoryController extends Controller
         $category->price = $req->price;
         $category->description = $req->description;
         $category->status = $req->status;
+
+            if($req->has('cat_image')){  //=>this condition use if edit form and not upload 
+                                         //image then consider old image
+                $dirPath = 'images/category_images/'; // folder name where you wan to upload
+                $image = $req->file('cat_image');  // name of your input field
+                   
+                $image_name = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path($dirPath), $image_name); // for store in folder
+                
+                $category->image = $dirPath . $image_name; // for store in database
+            }
 
         $category->save();
 
