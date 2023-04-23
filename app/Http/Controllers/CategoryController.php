@@ -6,58 +6,70 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function Category(Request $req)     // Category form open
+    protected $dirPath = 'images/category_images/';
+    public function index(Request $req)
     {
-        return view('admin.ctgry.category');
+        //Category LISTING...
+        $category = Category::get()->all();
+        return view('admin.category.index', compact('category'));
+    }
+    public function create(Request $req)
+    {
+        // Category form open
+        return view('admin.category.create');
     }
 
-    public function store(Request $req)        //INSERT IN DB...
+    public function store(Request $req)
     {
-        $category= new Category();
-        $category->name=$req->name;
+
+        $req->validate([
+            'cat_image' => ['required'],
+            'price' => ['required','numeric'],
+            'status' => 'required'
+        ]);
+
+        //INSERT IN DB...
+        $category = new Category();
+        $category->name = $req->name;
         // $category->image = $req->file('image');
-        $category->price=$req->price;
-        $category->description=$req->description;
+        $category->price = $req->price;
+        $category->description = $req->description;
         $category->status = $req->status;
 
-
-            if($req->has('cat_image')){
-                $dirPath = 'images/category_images/'; // folder name where you wan to upload
-                $image = $req->file('cat_image');     // name of your input field
-                    /*for making directory 
-                    File::isDirectory($dirPath) or File::makeDirectory($dirPath, 0777, true, true);
-                    $offerLatterDirPath = public_path($dirPath);
+        if ($req->has('cat_image')) {
+            // folder name where you wan to upload
+            $image = $req->file('cat_image'); // name of your input field
+            /*for making directory
+                    File::isDirectory($this->dirPath) or File::makeDirectory($this->dirPath, 0777, true, true);
+                    $offerLatterDirPath = public_path($this->dirPath);
                     if (!File::isDirectory($offerLatterDirPath)) {
                         File::makeDirectory($offerLatterDirPath, 0777, true, true);
                     }*/
-                $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path($dirPath), $image_name); // for store in folder
-                
-                $category->image = $dirPath . $image_name; // for store in database
-            }
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($this->dirPath), $image_name); // for store in folder
 
+            $category->image = $this->dirPath . $image_name; // for store in database
+        }
 
-       $category->save();
-       // $student::create($req->all());
-       return redirect()->route('admin.ctgry.index')->with('msg','Record Successfully Inserted');
+        $category->save();
+        // $student::create($req->all());
+        return redirect()
+            ->route('admin.category.index')
+            ->with('msg', 'Record Successfully Inserted');
     }
 
-    public function index(Request $req)   //Category LISTING...
+    public function edit($id)
     {
-        $category = Category::get()->all();
-        return view('admin.ctgry.index', compact('category'));
-    }
-
-    public function edit($id)            // user EDIT form display...
-    {
+        // user EDIT form display...
         $category = Category::where('id', $id)
             ->get()
             ->first();
-        return view('admin.ctgry.editctgry', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
-    function update(Request $req)         //user UPDATE IN DB...
+    function update(Request $req)
     {
+        //user UPDATE IN DB...
         $category = Category::where('id', $req->id)
             ->get()
             ->first();
@@ -67,29 +79,39 @@ class CategoryController extends Controller
         $category->description = $req->description;
         $category->status = $req->status;
 
-            if($req->has('cat_image')){  //=>this condition use if edit form and not upload 
-                                         //image then consider old image
-                $dirPath = 'images/category_images/'; // folder name where you wan to upload
-                $image = $req->file('cat_image');  // name of your input field
-                   
-                $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path($dirPath), $image_name); // for store in folder
-                
-                $category->image = $dirPath . $image_name; // for store in database
+        if ($req->has('cat_image')) {
+            //=>this condition use if edit form and not upload
+            //image then consider old image
+            if (file_exists(public_path($category->image))) {
+                @unlink(public_path($category->image));
             }
+            $image = $req->file('cat_image'); // name of your input field
+
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($this->dirPath), $image_name); // for store in folder
+
+            $category->image = $this->dirPath . $image_name; // for store in database
+        }
 
         $category->save();
 
-        return redirect()->route('admin.ctgry.index')->with('msg', 'Record Updated');
+        return redirect()
+            ->route('admin.category.index')
+            ->with('msg', 'Record Updated');
     }
 
-    function destroy($id)   //FOR user DELETE...
+    function destroy($id)
     {
-        $user = Category::where('id', $id)
+        //FOR Category DELETE...
+        $category = Category::where('id', $id)
             ->get()
             ->first();
-        $user->delete();
-
-        return redirect()->route('admin.ctgry.index')->with('msg', 'Record Deleted');
+        if (file_exists(public_path($category->image))) {
+            @unlink(public_path($category->image));
+        }
+        $category->delete();
+        return redirect()
+            ->route('admin.category.index')
+            ->with('msg', 'Record Deleted');
     }
 }

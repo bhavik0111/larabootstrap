@@ -19,13 +19,12 @@ href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.boots
         </div>
     @endif
 <!-- (END MSG) -->
-    <div class="card">
-        <div class="card-body">
-        <h4 class="card-title"><b>All Category</b></h4>
-
-            <div class="card-body">
-                <div class="form-group column" style="float:right">
-                  <a href="{{ route('admin.ctgry.category') }}" class="btn btn-dark"><b>Add+</b></a>
+<div class="card mb-3">
+    <div class="card-body">
+            <div class="card-header row">
+                <h4 class="card-title mb-3"><b>All Category</b></h4>
+                <div class="text-end">
+                  <a href="{{ route('admin.category.create') }}" class="btn btn-dark"><b>Add+</b></a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -45,7 +44,7 @@ href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.boots
                     @foreach ($category as $category)
                       <tr>
                         <td><strong>{{ $category->id }}</strong></td>
-                        
+
                         <td>{{ $category->name }}</td>
                         <td>
                             <img src="{{ asset('public/'.$category->image) }}" height="100" width="100">
@@ -57,9 +56,9 @@ href="{{ asset('public/admin/assets/libs/datatables.net-bs4/css/dataTables.boots
                             @if ($category->status==0){{ 'Deactive' }} @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.ctgry.editctgry', $category->id) }}" class="btn btn-info"><b>Edit</b></a>
-                           
-                            <form action="{{ route('Category.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure Delete User?');">
+                            <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-info"><b>Edit</b></a>
+
+                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure Delete User?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger text-white"><b>Delete</b></button>

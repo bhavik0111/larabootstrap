@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,21 +67,21 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 // <--CATEGORY-->
-    Route::get('admin/addcategory',[CategoryController::class,'Category'])->name('admin.ctgry.category'); //view Category form...
-
-    Route::post('admin/storecategory',[CategoryController::class,'store'])->name('Category.store'); //Insert in db
-
-    Route::get('admin/allcategory',[CategoryController::class,'index'])->name('admin.ctgry.index'); //<--(listing)-->
-
-     Route::get('admin/category/{id}/edit',[CategoryController::class,'edit'])->name('admin.ctgry.editctgry');  //<--(edit)-->
-
-     Route::post('admin/category/update',[CategoryController::class,'update'])->name('Category.update');
-
-     Route::delete('admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('Category.destroy');//
+    Route::get('admin/addcategory',[CategoryController::class,'create'])->name('admin.category.create'); //view Category form...
+    Route::post('admin/storecategory',[CategoryController::class,'store'])->name('admin.category.store'); //Insert in db
+    Route::get('admin/allcategory',[CategoryController::class,'index'])->name('admin.category.index'); //<--(listing)-->
+     Route::get('admin/category/{id}/edit',[CategoryController::class,'edit'])->name('admin.category.edit');  //<--(edit)-->
+     Route::post('admin/category/update',[CategoryController::class,'update'])->name('admin.category.update');
+     Route::delete('admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('admin.category.destroy');//
 // <--END CATEGORY-->
 
 // <--PRODUCT-->
-
+Route::get('admin/addproduct',[ProductController::class,'create'])->name('admin.product.create'); //view Category form...
+Route::post('admin/storeproduct',[ProductController::class,'store'])->name('admin.product.store'); //Insert in db
+Route::get('admin/allproduct',[ProductController::class,'index'])->name('admin.product.index'); //<--(listing)-->
+ Route::get('admin/product/{id}/edit',[ProductController::class,'edit'])->name('admin.product.edit');  //<--(edit)-->
+ Route::post('admin/product/update/{id}',[ProductController::class,'update'])->name('admin.product.update');
+ Route::delete('admin/product/delete/{id}',[ProductController::class,'destroy'])->name('admin.product.destroy');//
 // <--END PRODUCT-->
 
 

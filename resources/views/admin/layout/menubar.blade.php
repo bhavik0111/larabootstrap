@@ -14,7 +14,7 @@
                     >
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('user.index') }}" 
+                    <a href="{{ route('user.index') }}"
                        class="sidebar-link waves-effect waves-dark sidebar-link"aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Users</span>
                     </a>
                 </li>
@@ -27,12 +27,12 @@
 
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{ route('admin.ctgry.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i
+                            <a href="{{ route('admin.category.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i
                               ><span class="hide-menu"> Category </span></a
                             >
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link"
+                            <a href="{{ route('admin.product.index') }}" class="sidebar-link"
                               ><i class="mdi mdi-note-plus"></i
                               ><span class="hide-menu"> Product </span></a
                             >
