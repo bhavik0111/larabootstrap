@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     protected $dirPath = 'images/category_images/';
+
     public function index(Request $req)
     {
         //Category LISTING...
@@ -24,7 +25,7 @@ class CategoryController extends Controller
 
         $req->validate([
             'cat_image' => ['required'],
-            'price' => ['required','numeric'],
+            // 'price' => ['required','numeric'],
             'status' => 'required'
         ]);
 
@@ -32,19 +33,14 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $req->name;
         // $category->image = $req->file('image');
-        $category->price = $req->price;
+        // $category->price = $req->price;
         $category->description = $req->description;
         $category->status = $req->status;
 
         if ($req->has('cat_image')) {
             // folder name where you wan to upload
             $image = $req->file('cat_image'); // name of your input field
-            /*for making directory
-                    File::isDirectory($this->dirPath) or File::makeDirectory($this->dirPath, 0777, true, true);
-                    $offerLatterDirPath = public_path($this->dirPath);
-                    if (!File::isDirectory($offerLatterDirPath)) {
-                        File::makeDirectory($offerLatterDirPath, 0777, true, true);
-                    }*/
+            
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path($this->dirPath), $image_name); // for store in folder
 
@@ -52,10 +48,8 @@ class CategoryController extends Controller
         }
 
         $category->save();
-        // $student::create($req->all());
-        return redirect()
-            ->route('admin.category.index')
-            ->with('msg', 'Record Successfully Inserted');
+        
+        return redirect()->route('admin.category.index')->with('msg', 'Record Successfully Inserted');
     }
 
     public function edit($id)
@@ -75,7 +69,7 @@ class CategoryController extends Controller
             ->first();
         // dd($req);
         $category->name = $req->name;
-        $category->price = $req->price;
+        // $category->price = $req->price;
         $category->description = $req->description;
         $category->status = $req->status;
 

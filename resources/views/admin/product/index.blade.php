@@ -20,7 +20,7 @@
             <div class="card-header row">
                 <h4 class="card-title mb-3"><b>All Products</b></h4>
                 <div class="text-end">
-                    <a href="{{ route('admin.product.create') }}" class="btn btn-dark"><b>Add+</b></a>
+                    <a href="{{ route('admin.product.create') }}" class="btn btn-dark"><b> {{ __('Add+') }}</b></a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -32,6 +32,15 @@
                             <th><b>Name</b></th>
                             <th><b>Image</b></th>
                             <th><b>Price</b></th>
+                            <th><b>Colour</b></th>
+                            <!-- <th><b>Data</b></th>
+                            <th><b>Data detail</b></th>
+                            <th><b>Calls</b></th>
+                            <th><b>Calls detail</b></th>
+                            <th><b>SMS</b></th>
+                            <th><b>SMS detail</b></th>
+                            <th><b>Credit validity</b></th>
+                            <th><b>Credit validity detail</b></th> -->
                             <th><b>Description</b></th>
                             <th><b>Status</b></th>
                             <th><b>Action</b></th>
@@ -44,9 +53,18 @@
                                 <td>{{ $product->category->name }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>
-                                    <img src="{{ asset('public/' . $product->image) }}" height="100" width="100">
+                                    <img src="{{ asset('public/' . $product->image) }}" alt="image" height="100" width="100">
                                 </td>
                                 <td>{{ $product->price }}</td>
+                                <td><div style="background-color:{{$product->colour }};height:30px;width:30px"></div></td>
+                                <!-- <td>{{ $product->data }}</td>
+                                <td>{{ $product->data_detail }}</td>
+                                <td>{{ $product->calls }}</td>
+                                <td>{{ $product->calls_detail }}</td>
+                                <td>{{ $product->sms }}</td>
+                                <td>{{ $product->sms_detail }}</td>
+                                <td>{{ $product->credit_validity }}</td>
+                                <td>{{ $product->credit_validity_detail }}</td> -->
                                 <td>{{ $product->description }}</td>
                                 <td>
                                     @if ($product->status == 1)
@@ -58,13 +76,13 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.product.edit', $product->id) }}"
-                                        class="btn btn-info"><b>Edit</b></a>
+                                        class="btn btn-info"><b>{{ __('Edit') }}</b></a>
 
                                     <form action="{{ route('admin.product.destroy', $product->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure Delete User?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger text-white"><b>Delete</b></button>
+                                        <button type="submit" class="btn btn-danger text-white"><b>{{ __('Delete') }}</b></button>
                                     </form>
                                 </td>
                             </tr>
@@ -77,7 +95,7 @@
     <!-- </div> -->
 @endsection
 @push('scripts')
-    <!-- for all pagination,asc-desc,search,shorting  -->
+    <!--(for all pagination,asc-desc,search,shorting)-->
     <script src="{{ asset('public/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('public/admin/assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('public/admin/assets/extra-libs/DataTables/datatables.min.js') }}"></script>

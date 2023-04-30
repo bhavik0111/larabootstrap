@@ -28,13 +28,13 @@
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="{{ route('admin.category.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i
-                              ><span class="hide-menu"> Category </span></a
+                              ><span class="hide-menu"> All Categories </span></a
                             >
                         </li>
                         <li class="sidebar-item">
                             <a href="{{ route('admin.product.index') }}" class="sidebar-link"
                               ><i class="mdi mdi-note-plus"></i
-                              ><span class="hide-menu"> Product </span></a
+                              ><span class="hide-menu"> All Products </span></a
                             >
                         </li>
                     </ul>

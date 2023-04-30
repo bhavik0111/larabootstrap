@@ -9,12 +9,14 @@
     <div class="card-body">
        <h4 class="card-title">{{ __('Add User') }}</h4>
 
+
         <div class="card-body">
             <div class="form-group column" style="float:right">
               <a href="{{ route('user.index') }}" class="btn btn-dark"><b>Back</b></a>
             </div>
         </div>
         
+
         <div class="form-group row">
             <label
               for="name"

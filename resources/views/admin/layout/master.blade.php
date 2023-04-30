@@ -26,6 +26,8 @@
     <link href="{{ asset('public/admin/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('public/admin/dist/css/style.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('public/user/css/summernote-bs4.min.css') }}" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,7 +61,7 @@
       <!-- ============================================================== -->
       <!-- Topbar header - style you can find in pages.scss -->
       <!-- ============================================================== -->
-      
+
       @include('admin.layout.header')
 
 
@@ -69,7 +71,7 @@
       <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
-          
+
       @include('admin.layout.menubar')
 
 
@@ -121,7 +123,7 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-           
+
         @include('admin.layout.footer')
 
         <!-- ============================================================== -->
@@ -138,6 +140,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
     <script src="{{ asset('public/admin/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('public/admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -154,6 +157,9 @@
 
     <!--Custom JavaScript -->
     <script src="{{ asset('public/admin/dist/js/custom.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <!--This page JavaScript -->
     <!-- <script src="../dist/js/pages/dashboards/dashboard1.js"></script> -->

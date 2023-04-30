@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <!-- <div class="form-group row">
             <label
               for="price"
               class="col-sm-3 text-end control-label col-form-label"
@@ -60,7 +60,7 @@
                     {{ $message }}
                 </div>
             @enderror
-        </div>
+        </div> -->
 
         <div class="form-group row">
             <label
