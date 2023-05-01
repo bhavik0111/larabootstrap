@@ -3,10 +3,10 @@
 @section('content')
 <main class="form-signin">
     <div class="card">
-        <form method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('user.order.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
-                <h4 class="card-title">{{ __('Add Product') }}</h4>
+                <h4 class="card-title">{{ __('Create Order') }}</h4>
 
                 <div class="form-group column" style="float:right">
                     <a href="{{ route('admin.product.index') }}" class="btn btn-dark"><b>Back</b></a>

@@ -19,16 +19,13 @@
         <div class="card-body">
             <div class="card-header row">
                 <h4 class="card-title mb-3"><b>cart</b></h4>
-                <div class="text-end">
-                    <a href="{{ route('admin.product.create') }}" class="btn btn-dark"><b> {{ __('Add+') }}</b></a>
-                </div>
+
             </div>
             <div class="table-responsive">
                 <table id="zero_config" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th><b>ID</b></th>
-                            <th><b>user id</b></th>
                             <th><b>product id</b></th>
                             <th><b>qty</b></th>
                             <th><b>Price</b></th>
@@ -37,13 +34,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php $total = 0; @endphp
                         @foreach ($carts as $cart)
+                            @php $total = $total+$cart->product->price; @endphp
                             <tr>
                                 <td><strong>{{ $cart->id }}</strong></td>
-                                <td>{{ $cart->user_id }}</td>
-                                <td>{{ $cart->product_id }}</td>
-                                <td>{{ $cart->qty }}</td>
-                                <td>{{ $cart->price }}</td>
+                                <td>{{ $cart->product->name }}</td>
+                                <td><input type="number" value="{{ $cart->qty }}" class="form-control" onclick="calculate()"></td>
+                                <td>{{ $cart->product->price }}</td>
 
                                 <td>
                                     <a href="#"
@@ -57,9 +55,17 @@
                                     </form>
                                 </td>
                             </tr>
+
                         @endforeach
+                        <tr>
+                            <td>Total</td>
+                            <td colspan="4" class="text-right">{{ $total }}</td>
+                        </tr>
                     </tbody>
                 </table>
+                <div class="text-end">
+                    <a href="{{ route('user.order.create') }}" class="btn btn-dark"><b> {{ __('Process to Checkout') }}</b></a>
+                </div>
             </div>
         </div>
     </div>

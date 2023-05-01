@@ -3,6 +3,18 @@
 @section('content')
     <div class="best-offer-sec comm-PTB-half">
         <div class="container">
+
+            @if (session()->has('msg'))
+                <div class="alert alert-success">
+                    {{ session()->get('msg') }}
+                </div>
+            @endif
+            @if (session()->has('error_msg'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error_msg') }}
+                </div>
+            @endif
+
             <h2 class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">All products</h2>
 
             <div class="row best-offers">
@@ -85,12 +97,14 @@
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="acc-1">
                                                     <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#col-{{ $mainkey }}-{{ $key }}"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#col-{{ $mainkey }}-{{ $key }}"
                                                         aria-expanded="false" aria-controls="col-1">
                                                         {{ $feature->title }}</button>
                                                 </h2>
-                                                <div id="col-{{ $mainkey }}-{{ $key }}" class="accordion-collapse collapse"
-                                                    aria-labelledby="acc-1" data-bs-parent="#accordionExample">
+                                                <div id="col-{{ $mainkey }}-{{ $key }}"
+                                                    class="accordion-collapse collapse" aria-labelledby="acc-1"
+                                                    data-bs-parent="#accordionExample">
                                                     <div class="accordion-body">
                                                         <div class="sim-acc-det">
                                                             <ul>
@@ -107,9 +121,11 @@
 
 
                                 <div class="offer-list-btn flex-cn-sb">
-                                    <a href="javascript:void(0);" class="btn btn-primary black-btn more-det-btn" onclick="$('#sim-show-detail{{ $mainkey }}').slideToggle(400);">More
+                                    <a href="javascript:void(0);" class="btn btn-primary black-btn more-det-btn"
+                                        onclick="$('#sim-show-detail{{ $mainkey }}').slideToggle(400);">More
                                         details</a>
-                                    <a href="{{ route('user.cart.cart',['id'=>$product->id]) }}" class="btn btn-primary blue-btn">
+                                    <a href="{{ route('user.cart.cart', ['id' => $product->id]) }}"
+                                        class="btn btn-primary blue-btn">
                                         Buy now
                                     </a>
                                 </div>

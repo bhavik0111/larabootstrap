@@ -2,9 +2,10 @@
 
 // use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
@@ -74,4 +75,6 @@ Route::middleware(['auth','isAdmin'])->group(function(){
 Route::middleware(['auth'])->group(function(){
     Route::get('user/addtocart/{id}',[CartController::class,'create'])->name('user.cart.cart'); //<--(...)-->
     Route::get('user/cart',[CartController::class,'index'])->name('user.cart.index');
+    //Order
+    Route::get('user/order/create',[OrderController::class,'create'])->name('user.order.create');
 });

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cart;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class CartController extends Controller
      */
     public function index()
     {
-       $carts = Cart::where('user_id',auth()->user()->id)->get()->all();
-
-        return view('user.cart.cart', compact('carts'));
+        //
     }
 
     /**
@@ -24,20 +21,9 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        // dd($id);
-        $carts = Cart::where('user_id',auth()->user()->id)->where('product_id',$id)->get()->all();
-        if($carts){
-            return redirect()->back()->with('msg', 'Product Already Exist in Cart');
-        }
-        $cart = new Cart();
-        $cart->user_id= auth()->user()->id;
-        $cart->product_id= $id;
-        $cart->qty= 1;
-        $cart->price= 0;
-        $cart->save();
-        return redirect()->route('user.cart.index');
+        return view('user.order.create');
     }
 
     /**
